@@ -53,11 +53,11 @@ const TodoListItem = ({ todo, onRemove, onUpdate, onToggle }) => {
         <div>
           <div onClick={() => onToggle(id)}>
             {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-            <input type='text' value={title} onChange={onChange} />
-            <input type='text' value={content} onChange={onChange} />
-            <MdEdit onClick={() => setEditMode(true)} />
-            <MdRemoveCircleOutline onClick={() => onRemove(id)} />
           </div>
+          <input type='text' value={title} onChange={onChange} />
+          <input type='text' value={content} onChange={onChange} />
+          <MdEdit onClick={() => setEditMode(true)} />
+          <MdRemoveCircleOutline onClick={() => onRemove(id)} />
         </div>
       )}
     </div>
