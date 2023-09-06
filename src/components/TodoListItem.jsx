@@ -4,6 +4,7 @@ import {
   MdCheckBox,
   MdRemoveCircleOutline,
   MdEdit,
+  MdCheck,
 } from 'react-icons/md';
 
 const TodoListItem = ({ todo, onRemove, onUpdate, onToggle }) => {
@@ -40,14 +41,12 @@ const TodoListItem = ({ todo, onRemove, onUpdate, onToggle }) => {
             value={value.content}
             onChange={onChange}
           />
-          <button
+          <MdCheck
             onClick={() => {
               onUpdate(value);
               setEditMode(false);
             }}
-          >
-            완료
-          </button>
+          />
         </ul>
       ) : (
         <div>
