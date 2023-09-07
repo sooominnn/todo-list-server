@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TodoInsert = ({ onInsert }) => {
+const TodoInsert = ({ dispatcher }) => {
   const initialState = {
     title: '',
     content: '',
@@ -17,8 +17,16 @@ const TodoInsert = ({ onInsert }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onInsert(todo);
-    setTodo(initialState);
+
+    if (todo.title && todo.content) {
+      dispatcher.onAddTodo({ payload: todo });
+
+      // console.log('add????');
+
+      setTodo(initialState);
+    } else {
+      window.confirm('입력하지 않은 항목이 있습니다');
+    }
   };
   return (
     <form>

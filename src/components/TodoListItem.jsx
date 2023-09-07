@@ -7,8 +7,8 @@ import {
   MdCheck,
 } from 'react-icons/md';
 
-const TodoListItem = ({ todo, onRemove, onUpdate, onToggle }) => {
-  const { id, title, content, checked } = todo;
+const TodoListItem = ({ todo, dispatch }) => {
+  const { title, content, checked } = todo;
 
   const [editMode, setEditMode] = useState(false);
 
@@ -17,12 +17,31 @@ const TodoListItem = ({ todo, onRemove, onUpdate, onToggle }) => {
   );
 
   const onChange = (e) => {
-    // input값 변화 감지
     const text = e.target.value;
     const name = e.target.name;
 
     setValue({ ...value, [name]: text });
-    // 기존 value 객체 복사한 뒤 name이라는 키를 가진 값을 text로 설정한다는 의미.
+  };
+
+  const update = () => {
+    dispatch({
+      type: 'EDIT',
+      ...value,
+    });
+  };
+
+  const remove = () => {
+    dispatch({
+      type: 'REMOVE',
+      id: todo.id,
+    });
+  };
+
+  const check = () => {
+    dispatch({
+      type: 'CHECK',
+      id: todo.id,
+    });
   };
 
   return (
@@ -43,20 +62,20 @@ const TodoListItem = ({ todo, onRemove, onUpdate, onToggle }) => {
           />
           <MdCheck
             onClick={() => {
-              onUpdate(value);
+              update(value);
               setEditMode(false);
             }}
           />
         </ul>
       ) : (
         <div>
-          <div onClick={() => onToggle(id)}>
+          <div onClick={check}>
             {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
           </div>
           <input type='text' value={title} onChange={onChange} />
           <input type='text' value={content} onChange={onChange} />
           <MdEdit onClick={() => setEditMode(true)} />
-          <MdRemoveCircleOutline onClick={() => onRemove(id)} />
+          <MdRemoveCircleOutline onClick={remove} />
         </div>
       )}
     </div>
