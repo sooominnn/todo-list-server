@@ -4,10 +4,10 @@ import TodoTemplate from '../components/TodoTemplate';
 import TodoInsert from '../components/TodoInsert';
 import TodoList from '../components/Todolist';
 
-export default function Home({ todo, dispatch, dispatcher }) {
+export default function Home({ todo, dispatch }) {
   return (
     <TodoTemplate>
-      <TodoInsert dispatcher={dispatcher} />
+      <TodoInsert dispatch={dispatch} />
       <TodoList todo={todo} dispatch={dispatch} />
     </TodoTemplate>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TodoInsert = ({ dispatcher }) => {
+const TodoInsert = ({ dispatch }) => {
   const initialState = {
     title: '',
     content: '',
@@ -19,9 +19,8 @@ const TodoInsert = ({ dispatcher }) => {
     e.preventDefault();
 
     if (todo.title && todo.content) {
-      dispatcher.onAddTodo({ payload: todo });
-
-      // console.log('add????');
+      dispatch({ type: 'ADD', todo });
+      // dispatcher.onAddTodo({ type: 'ADD', todo });
 
       setTodo(initialState);
     } else {

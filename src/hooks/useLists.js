@@ -42,11 +42,11 @@ const useLists = () => {
 
   const todoReducer = (state, action) => {
     const nextId = Math.max(0, ...state.map((todo) => todo.id)) + 1;
-    // const nextId =  useRef(7);
 
     switch (action.type) {
       case 'ADD':
-        return state.concat({ id: nextId, ...action.payload });
+        // return state.concat({ id: nextId, ...action.payload });
+        return state.concat({ id: nextId, ...action.todo });
 
       case 'REMOVE':
         return state.filter((todo) => todo.id !== action.id);
@@ -68,15 +68,16 @@ const useLists = () => {
 
   const [todo, dispatch] = useReducer(todoReducer, todos);
 
-  const onAddTodo = (payload) => {
-    return dispatch({ type: 'ADD', payload });
-  };
+  // const onAddTodo = (payload) => {
+  //   return dispatcher({ type: 'ADD', payload });
+  // };
 
   const onRemoveTodo = (payload) => {
     return dispatch({ type: 'REMOVE', payload });
   };
 
-  const dispatcher = { onAddTodo, onRemoveTodo };
+  // const dispatcher = { onAddTodo, onRemoveTodo };
+  const dispatcher = { onRemoveTodo };
 
   return { todo, dispatch, dispatcher };
 };
